@@ -94,18 +94,42 @@ document.getElementById('randLast')!.addEventListener('click', () => {
 
 document.getElementById('toLeft')!.addEventListener('click', () => {
   store.dispatch({
-    type: 'CHANGE_DIRECTION_TO_270',
+    type: 'CHANGE_DIRECTION',
+    payload: '270deg',
   });
 });
 
 document.getElementById('toRight')!.addEventListener('click', () => {
   store.dispatch({
-    type: 'CHANGE_DIRECTION_TO_90',
+    type: 'CHANGE_DIRECTION',
+    payload: '90deg',
   });
 });
 
 document.getElementById('to45Degrees')!.addEventListener('click', () => {
   store.dispatch({
-    type: 'CHANGE_DIRECTION_TO_45',
+    type: 'CHANGE_DIRECTION',
+    payload: '45deg',
+  });
+});
+
+document.getElementById('to135Degrees')!.addEventListener('click', () => {
+  store.dispatch({
+    type: 'CHANGE_DIRECTION',
+    payload: '135deg',
+  });
+});
+
+document.getElementById('to225Degrees')!.addEventListener('click', () => {
+  store.dispatch({
+    type: 'CHANGE_DIRECTION',
+    payload: '225deg',
+  });
+});
+
+document.getElementById('to315Degrees')!.addEventListener('click', () => {
+  store.dispatch({
+    type: 'CHANGE_DIRECTION',
+    payload: '315deg',
   });
 });
