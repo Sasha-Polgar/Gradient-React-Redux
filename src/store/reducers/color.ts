@@ -53,6 +53,12 @@ function colorReducer(
         direction: '90deg',
       };
 
+    case 'CHANGE_DIRECTION_TO_45':
+      return {
+        ...state,
+        direction: '45deg',
+      };
+
     default:
       return state;
   }

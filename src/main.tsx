@@ -103,3 +103,9 @@ document.getElementById('toRight')!.addEventListener('click', () => {
     type: 'CHANGE_DIRECTION_TO_90',
   });
 });
+
+document.getElementById('to45Degrees')!.addEventListener('click', () => {
+  store.dispatch({
+    type: 'CHANGE_DIRECTION_TO_45',
+  });
+});
