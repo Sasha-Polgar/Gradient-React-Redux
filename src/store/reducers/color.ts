@@ -52,4 +52,4 @@ export const {
   changeDirection,
 } = colorSlice.actions;
 
-export default colorSlice;
+export default colorSlice.reducer;
