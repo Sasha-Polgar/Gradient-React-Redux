@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 // == Imports
 import store from './store';
 import { randomHexColor, generateSpanColor } from './utils/color';
 import { AppState } from './@types';
 
 import './styles/index.scss';
+import { changeFirstColor, changeLastColor } from './store/reducers/color';
 
 // Pour récupérer les données stocker dans mon store, je vais faire un store.getState()
 console.log(store.getState());
@@ -79,57 +81,57 @@ document.getElementById('randAll')!.addEventListener('click', () => {
 document.getElementById('randFirst')!.addEventListener('click', () => {
   // Je vais emettre, je vais dispatch une action / intention à tous les reducers
   // La convention de redux veut que l'action soit un objet avec une propriété `type`
-  store.dispatch({
-    type: 'CHANGE_FIRST_COLOR',
-    payload: randomHexColor(),
-  });
+  const randomColor = randomHexColor();
+
+  // J'ai utiliser le action creator `changeFirstColor` pour créer mon action
+  // Cette fonction `changeFirstColor` va me retourner un objet avec une propriété
+  // `type` === 'color/changeFirstColor'
+  // `payload` === randomColor
+  store.dispatch(changeFirstColor(randomColor));
 });
 
 document.getElementById('randLast')!.addEventListener('click', () => {
-  store.dispatch({
-    type: 'CHANGE_LAST_COLOR',
-    payload: randomHexColor(),
-  });
+  store.dispatch(changeLastColor(randomHexColor()));
 });
 
-document.getElementById('to270Degrees')!.addEventListener('click', () => {
-  store.dispatch({
-    type: 'CHANGE_DIRECTION',
-    payload: '270deg',
-  });
-});
-
-document.getElementById('to90Degrees')!.addEventListener('click', () => {
-  store.dispatch({
-    type: 'CHANGE_DIRECTION',
-    payload: '90deg',
-  });
-});
-
-document.getElementById('to45Degrees')!.addEventListener('click', () => {
+document.getElementById('to45deg')!.addEventListener('click', () => {
   store.dispatch({
     type: 'CHANGE_DIRECTION',
     payload: '45deg',
   });
 });
 
-document.getElementById('to135Degrees')!.addEventListener('click', () => {
+document.getElementById('to135deg')!.addEventListener('click', () => {
   store.dispatch({
     type: 'CHANGE_DIRECTION',
     payload: '135deg',
   });
 });
 
-document.getElementById('to225Degrees')!.addEventListener('click', () => {
+document.getElementById('to225deg')!.addEventListener('click', () => {
   store.dispatch({
     type: 'CHANGE_DIRECTION',
     payload: '225deg',
   });
 });
 
-document.getElementById('to315Degrees')!.addEventListener('click', () => {
+document.getElementById('to315deg')!.addEventListener('click', () => {
   store.dispatch({
     type: 'CHANGE_DIRECTION',
     payload: '315deg',
+  });
+});
+
+document.getElementById('to90deg')!.addEventListener('click', () => {
+  store.dispatch({
+    type: 'CHANGE_DIRECTION',
+    payload: '90deg',
+  });
+});
+
+document.getElementById('to270deg')!.addEventListener('click', () => {
+  store.dispatch({
+    type: 'CHANGE_DIRECTION',
+    payload: '270deg',
   });
 });

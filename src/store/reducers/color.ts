@@ -1,5 +1,5 @@
-import { AnyAction } from '@reduxjs/toolkit';
-import { AppState } from '../../@types';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { AppState, TColor } from '../../@types';
 
 const initialState: AppState = {
   firstColor: '#F0F',
@@ -8,48 +8,30 @@ const initialState: AppState = {
   nbColors: 0,
 };
 
-// Le reducer est une fonction de traduction
-// Il va traduire une intention (action) en nouvelle donnée
-function colorReducer(
-  state = initialState,
-  action: AnyAction = { type: '@@INIT' }
-): AppState {
-  // En fonction de l'action / intention réaliser
-  // Je vais retourner les données modifiées
-  switch (action.type) {
-    case 'CHANGE_FIRST_COLOR':
-      return {
-        // les ... me permette de déverser toutes les propriétés de l'objet state
-        // dans le nouvel objet
-        ...state,
-        firstColor: action.payload,
-        nbColors: state.nbColors + 1,
-      };
+// Pour gérer nos reducers, on va utiliser la fonction createSlice de redux-toolkit
+// Elle permet de générér un reducer et des actions associées
+const colorSlice = createSlice({
+  // On va donnée un nom au slice
+  // Cela permet de prefixer les actions générées par `${sliceName}/${actionName}`
+  // ex: `color/changeFirstColor`
+  name: 'color',
+  // On va définir l'état initial du reducer
+  initialState,
+  // On va définir toutes les actions générées par le slice
+  // Et la traduction en reducer
+  reducers: {
+    // équivalent au switch case 'CHANGE_FIRST_COLOR'
+    changeFirstColor(state, action: PayloadAction<TColor>) {
+      state.firstColor = action.payload;
+      state.nbColors += 1;
+    },
+    changeLastColor(state, action: PayloadAction<TColor>) {
+      state.lastColor = action.payload;
+      state.nbColors += 1;
+    },
+  },
+});
 
-    case 'CHANGE_LAST_COLOR':
-      return {
-        ...state,
-        lastColor: action.payload,
-        nbColors: state.nbColors + 1,
-      };
+export const { changeFirstColor, changeLastColor } = colorSlice.actions;
 
-    case 'CHANGE_ALL_COLORS':
-      return {
-        ...state,
-        lastColor: action.payload.lastColor,
-        firstColor: action.payload.firstColor,
-        nbColors: state.nbColors + 2,
-      };
-
-    case 'CHANGE_DIRECTION':
-      return {
-        ...state,
-        direction: action.payload,
-      };
-
-    default:
-      return state;
-  }
-}
-
-export default colorReducer;
+export default colorSlice;
