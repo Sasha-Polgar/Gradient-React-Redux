@@ -92,14 +92,14 @@ document.getElementById('randLast')!.addEventListener('click', () => {
   });
 });
 
-document.getElementById('toLeft')!.addEventListener('click', () => {
+document.getElementById('to270Degrees')!.addEventListener('click', () => {
   store.dispatch({
     type: 'CHANGE_DIRECTION',
     payload: '270deg',
   });
 });
 
-document.getElementById('toRight')!.addEventListener('click', () => {
+document.getElementById('to90Degrees')!.addEventListener('click', () => {
   store.dispatch({
     type: 'CHANGE_DIRECTION',
     payload: '90deg',
